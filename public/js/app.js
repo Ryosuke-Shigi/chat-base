@@ -55956,7 +55956,8 @@ $(document).ready(function () {
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-  });
+  }); //クリック時のアクション
+
   $("#submit").click(function () {
     var url = "/posts/create";
     $.ajax({
@@ -55968,7 +55969,14 @@ $(document).ready(function () {
     });
     return false;
   });
+  /* チャンネル名post  postedはeventで定義したクラス  */
+
+  /* postedクラスの中のテーブルデータpostのtextを使用している */
+
+  /*Channel: post, Event: App\Events\posted　という形でデータはpusherに送られている*/
+
   window.Echo.channel('post').listen('posted', function (e) {
+    //入力したコメントを追加
     $("#board").append('<li>' + e.post.text + '</li>');
   });
 });
